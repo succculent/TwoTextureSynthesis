@@ -54,7 +54,7 @@ for l,layer in enumerate(tex_layers):
 bounds = get_bounds([source_img1],[source_img2],im_size)
 
 #generate new texture
-result = ImageSyn(net1, net2, constraints, bounds=bounds, callback='lambda', #removed show progress might need fixing
+result = ImageSyn(net1, net2, constraints, bounds=bounds, callback=lambda x: show_progress(x,net1),
                   minimize_options={'maxiter': maxiter,
                                     'maxcor': m,
                                     'ftol': 0, 'gtol': 0})

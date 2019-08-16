@@ -19,6 +19,30 @@ def get_indices(net, constraints):
     indices = [ndx for ndx,layer in enumerate(net.blobs.keys()) if layer in constraints.keys()]
     return net.blobs.keys(),indices[::-1]
 
+def show_progress(x, net, title=None, handle=False):
+    '''
+    Helper function to show intermediate results during the gradient descent.
+
+    :param x: vectorised image on which the gradient descent is performed
+    :param net: caffe.Classifier object defining the network
+    :param title: optional title of figuer
+    :param handle: obtional return of figure handle
+    :return: figure handle (optional)
+    '''
+    #Can uncomment this if progress images are needed.
+    
+    '''disp_image = (x.reshape(*net.blobs['data'].data.shape)[0].transpose(1,2,0)[:,:,::-1]-x.min())/(x.max()-x.min())
+    clear_output()
+    plt.imshow(disp_image)
+    if title != None:
+        ax = plt.gca()
+        ax.set_title(title)
+    f = plt.gcf()
+    display()
+    plt.show()    
+    if handle:
+        return f'''
+
 def get_bounds(images1, images2, im_size):
     '''
     Gets the optimization bounds
